@@ -1,0 +1,11 @@
+# Python-Umgebung – jeder legt sie selbst an, sie ist sehr groß
+.venv/
+
+# dbt: kompiliertes SQL und Laufergebnisse – entsteht bei jedem dbt-Lauf neu
+target/
+
+# dbt: heruntergeladene Pakete (z. B. dbt_utils) – holt "dbt deps" jederzeit neu
+dbt_packages/
+
+# dbt: Logdateien
+logs/
