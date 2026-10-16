@@ -19,3 +19,47 @@ grant usage on schema raw.shop to role transformer;
 grant select on all tables in schema raw.shop to role transformer;
 grant select on future tables in schema raw.shop to role transformer;
 grant ownership on database analytics to role transformer;
+------Tabellen-------
+create table if not exists raw.shop.kunden
+(
+kunden_nr varchar,
+vorname varchar,
+nachname varchar,
+email varchar,
+strasse varchar,
+plz varchar,
+stadt varchar,
+registriert_am  varchar,
+_geladen_am timestamp_ntz,
+_quelldatei varchar
+);
+create table if not exists raw.shop.bestellungen
+(
+bestell_nr varchar,
+kunden_nr varchar,
+bestelldatum varchar,
+status varchar,
+_geladen_am timestamp_ntz,
+_quelldatei varchar
+);
+create table if not exists raw.shop.produkte
+(
+produkt_nr varchar,
+produktname varchar,
+kategorie varchar ,
+listenpreis_eur varchar,
+_geladen_am timestamp_ntz,
+_quelldatei varchar
+);
+create table if not exists raw.shop.bestellpositionen
+(
+bestell_nr varchar,
+position varchar,
+produkt_nr varchar ,
+menge varchar,
+einzelpreis_eur varchar,
+_geladen_am timestamp_ntz,
+_quelldatei varchar
+
+
+);
