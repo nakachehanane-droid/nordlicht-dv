@@ -18,7 +18,7 @@ grant usage on database raw to role transformer;
 grant usage on schema raw.shop to role transformer;
 grant select on all tables in schema raw.shop to role transformer;
 grant select on future tables in schema raw.shop to role transformer;
-grant ownership on database analytics to role transformer;
+grant ownership on database analytics to role transformer copy current grants;
 ------Tabellen-------
 create table if not exists raw.shop.kunden
 (
