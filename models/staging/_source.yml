@@ -1,0 +1,18 @@
+version: 2
+sources:
+  - name: shop
+    description: "onlineshop"
+    database: raw
+    schema: shop
+    tables:
+     - name: kunden
+       description: "table kunden"
+     - name: produkte
+       description: "table produkte"
+     - name: bestellungen
+       description: "table bestellungen"
+     - name: bestellpositionen
+       description: "table bestellpositionen"
+
+
+  
