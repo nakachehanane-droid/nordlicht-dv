@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: stg_shop__kunden
+    description: "Bereinigte Kundendaten aus allen Ladungen"
+    columns:
+      - name: kunden_nr
+        description: "Geschäftsschlüssel des Kunden"
+        data_tests:
+          - not_null
+      - name: email
+        data_tests:
+          - not_null
+
+  - name: stg_shop__produkte
+    description: "Bereinigter Produktkatalog"
+    columns:
+      - name: produkt_nr
+        description: "Geschäftsschlüssel des Produkts"
+        data_tests:
+          - not_null
+
+  - name: stg_shop__bestellungen
+    description: "Bereinigte Bestellköpfe"
+    columns:
+      - name: bestell_nr
+        description: "Geschäftsschlüssel der Bestellung"
+        data_tests:
+          - not_null
+      - name: kunden_nr
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_shop__kunden')
+                field: kunden_nr
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['bezahlt', 'versendet', 'zugestellt']
+
+  - name: stg_shop__bestellpositionen
+    description: "Bereinigte Bestellpositionen"
+    columns:
+      - name: bestell_nr
+        data_tests:
+          - not_null
+      - name: produkt_nr
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_shop__produkte')
+                field: produkt_nr
