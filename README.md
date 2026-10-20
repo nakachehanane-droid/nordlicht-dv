@@ -25,6 +25,6 @@ Snowflake um (ELT) und legt das Ergebnis in der Datenbank ANALYTICS ab:
 ## Status
 
 - [x] Projekt und Git-Repository angelegt
-- [ ] Snowflake einrichten
-- [ ] Daten laden
-- [ ] dbt-Projekt aufbauen
+- [x] Snowflake einrichten
+- [x] Daten laden
+- [x] dbt-Projekt aufbauen
