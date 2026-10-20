@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: hub_kunden
+    description: "Hub Kunde: jede Kundennummer genau einmal, mit erstem Ladedatum"
+    columns:
+      - name: hk_kunden
+        description: "Hash Key aus kunden_nr"
+        data_tests:
+          - unique
+          - not_null
+      - name: kunden_nr
+        data_tests:
+          - unique
+          - not_null
