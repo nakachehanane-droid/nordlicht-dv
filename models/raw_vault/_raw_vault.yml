@@ -13,3 +13,50 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: hub_produkte
+    description: "Hub Produkte: jede Produktnummer genau einmal, mit erstem Ladedatum"
+    columns:
+      - name: hk_produkte
+        description: "Hash Key aus produkt_nr"
+        data_tests:
+          - unique
+          - not_null
+      - name: produkt_nr
+        data_tests:
+          - unique
+          - not_null
+
+  - name: hub_bestellungen
+    description: "Hub Bestellung: jede Bestellnummer genau einmal, mit erstem Ladedatum"
+    columns:
+      - name: hk_bestellungen
+        description: "Hash Key aus bestell_nr"
+        data_tests:
+          - unique
+          - not_null
+      - name: bestell_nr
+        data_tests:
+          - unique
+          - not_null
+
+  - name: link_kunden_bestellung
+    description: "Link Kunde-Bestellung: welcher Kunde welche Bestellung gemacht hat, jede Beziehung genau einmal"
+    columns:
+      - name: hk_kunden_bestellung
+        description: "Hash Key aus kunden_nr + bestell_nr"
+        data_tests:
+          - unique
+          - not_null
+      - name: hk_kunden
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('hub_kunden')
+                field: hk_kunden
+      - name: hk_bestellungen
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('hub_bestellungen')
+                field: hk_bestellungen
