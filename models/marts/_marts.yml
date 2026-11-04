@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: fct_bestellpositionen
+    description: >
+      Faktentabelle mit einer Zeile pro Bestellposition.
+      Positionen mit Menge <= 0 (Datenfehler aus der Quelle) sind herausgefiltert.
+      Grundlage für alle Umsatzauswertungen.
+    columns:
+      - name: hk_bestellpositionen
+        description: "Hash Key der Bestellposition aus bestell_nr, produkt_nr und position. Eindeutig pro Zeile."
+        data_tests:
+          - unique
+          - not_null
+      - name: umsatz_eur
+        description: "Umsatz der Position in Euro, berechnet als menge * einzelpreis_eur."
+
+  - name: dim_kunden_historie
+    description: >
+      Kundendimension mit Historie (SCD Typ 2). Eine Zeile pro Kunde und Version.
+      Für Auswertungen nach dem Wohnort zum Bestellzeitpunkt.
+      Für den aktuellen Stand dim_kunden oder ist_aktuell = true verwenden.
+    columns:
+      - name: gueltig_von
+        description: "Beginn der Gültigkeit. Die erste Version eines Kunden gilt ab 1900-01-01 (gilt schon immer)."
+      - name: gueltig_bis
+        description: "Ende der Gültigkeit (exklusiv). 9999-12-31 bedeutet: aktuell gültige Version."
